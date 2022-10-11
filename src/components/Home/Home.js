@@ -1,7 +1,8 @@
 import React from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Button, TextField, Select, MenuItem } from "@mui/material";
+import { TextField, Select, MenuItem } from "@mui/material";
 import { Box } from "@mui/system";
+import WalletConnection from "../context/WalletConnection";
 
 const Home = () => {
   return (
@@ -68,9 +69,8 @@ const Home = () => {
               value={Number}
               sx={{ width: "fit-content", height: "40px", margin: "10px" }}
             >
-              <MenuItem>eth</MenuItem>
-              <MenuItem>eth</MenuItem>
-              <MenuItem>eth</MenuItem>
+              <MenuItem>ETH</MenuItem>
+              <MenuItem>NBUS</MenuItem>
             </Select>
           </div>
           <div>
@@ -91,31 +91,13 @@ const Home = () => {
                 label="Select token"
                 sx={{ width: "fit-content", height: "40px", margin: "10px" }}
               >
-                <MenuItem>eth</MenuItem>
-                <MenuItem>eth</MenuItem>
-                <MenuItem>eth</MenuItem>
+                <MenuItem>ETH</MenuItem>
+                <MenuItem>NBUS</MenuItem>
               </Select>
             </Box>
           </div>
         </Box>
-        <Button
-          variant="error.light"
-          sx={{
-            ":hover": {
-              bgcolor: "#FCDCE8", // theme.palette.primary.main
-              color: "#DF3B89",
-            },
-            backgroundColor: "#FDD3DF",
-            color: "#DF3B89",
-            borderColor: "green",
-            margin: "auto",
-            height: "40px",
-            width: "250px",
-            borderRadius: "18px",
-          }}
-        >
-          Connect Wallet
-        </Button>
+        <WalletConnection />
       </Box>
     </div>
   );

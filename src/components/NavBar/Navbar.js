@@ -2,11 +2,7 @@ import React, { useContext } from "react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { Button } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { TransactionContext } from "../context/TransactionContext";
 const Navbar = () => {
-  // const [selected, setSelected] = useState("pool");
-  const { connectWallet, currentAccount } = useContext(TransactionContext);
-  console.log({ connectWallet, currentAccount });
   return (
     <div
       className="mainContainer"
@@ -28,7 +24,7 @@ const Navbar = () => {
       </div>
       <div
         style={{
-          width: "300px",
+          width: "200px",
           height: "40px",
           borderRadius: "20px",
           listStyleType: "none",
@@ -52,21 +48,8 @@ const Navbar = () => {
         </div>
 
         <div>
-          <Button style={{ color: "grey" }}>Pool</Button>
+          <Button style={{ color: "grey" }}>Liquidity</Button>
         </div>
-        <div>
-          <Button style={{ color: "grey" }}>Vote</Button>
-        </div>
-
-        <div>
-          <Button style={{ color: "grey" }}>
-            Charts <ArrowOutwardIcon />
-          </Button>{" "}
-        </div>
-
-        {/* <Button>
-          Charts <ArrowOutwardIcon />
-        </Button> */}
       </div>
       <div
         style={{
@@ -111,29 +94,7 @@ const Navbar = () => {
             {/* </Button> */}
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            borderRadius: "18px",
-            gap: "5px",
-            margin: "5px",
-            width: "fit-content",
-            height: "fit-content",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Button
-            style={{
-              backgroundColor: "white",
-              borderRadius: "18px",
-              color: "#1C2023",
-            }}
-            onClick={() => connectWallet()}
-          >
-            connect wallet
-          </Button>
-        </div>
+
         <div
           style={{
             display: "flex",

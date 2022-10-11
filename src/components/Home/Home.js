@@ -69,9 +69,8 @@ const Home = () => {
               value={Number}
               sx={{ width: "fit-content", height: "40px", margin: "10px" }}
             >
-              <MenuItem>eth</MenuItem>
-              <MenuItem>eth</MenuItem>
-              <MenuItem>eth</MenuItem>
+              <MenuItem>ETH</MenuItem>
+              <MenuItem>NBUS</MenuItem>
             </Select>
           </div>
           <div>
@@ -92,9 +91,8 @@ const Home = () => {
                 label="Select token"
                 sx={{ width: "fit-content", height: "40px", margin: "10px" }}
               >
-                <MenuItem>eth</MenuItem>
-                <MenuItem>eth</MenuItem>
-                <MenuItem>eth</MenuItem>
+                <MenuItem>ETH</MenuItem>
+                <MenuItem>NBUS</MenuItem>
               </Select>
             </Box>
           </div>

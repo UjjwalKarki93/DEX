@@ -27,7 +27,7 @@ Another way, which Uniswap implemented, was to let anyone be a market maker - an
 
 ## Installation
 
-Install the dependicies before starting the development server.
+Install  dependicies before starting the development server.
 
 ```sh
 npm i --yes
@@ -36,6 +36,5 @@ npm i --yes
 To start the dev server
 
 ```sh
-cd frontend
 npm start
 ```

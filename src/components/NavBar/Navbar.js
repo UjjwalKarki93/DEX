@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { Button } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { TransactionContext } from "../context/TransactionContext";
 const Navbar = () => {
   // const [selected, setSelected] = useState("pool");
-
+  const { connectWallet, currentAccount } = useContext(TransactionContext);
+  console.log({ connectWallet, currentAccount });
   return (
     <div
       className="mainContainer"
@@ -127,6 +129,7 @@ const Navbar = () => {
               borderRadius: "18px",
               color: "#1C2023",
             }}
+            onClick={() => connectWallet()}
           >
             connect wallet
           </Button>

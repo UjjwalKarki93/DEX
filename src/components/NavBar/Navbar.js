@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { Button } from "@mui/material";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Web3Context } from "../context/Web3Context";
+
 const Navbar = () => {
+  const { data } = useContext(Web3Context);
   return (
     <div
       className="mainContainer"
@@ -74,48 +75,25 @@ const Navbar = () => {
             cursor: "pointer",
           }}
         >
-          <img
-            src="https://seeklogo.com/images/E/ethereum-logo-EC6CDBA45B-seeklogo.com.png"
-            height={20}
-            alt="img"
-          ></img>
-          <div>
-            {/* <Button
-              style={{
-                width: "fit-content",
-                height: "fit-content",
-              }}
-            > */}
-            <select style={{ border: "none", outline: "none" }}>
-              <option> Etherum</option>
-              <option>brave</option>
-              <option>sol</option>
-            </select>
-            {/* </Button> */}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            borderRadius: "18px",
-            gap: "5px",
-            margin: "5px",
-            width: "fit-content",
-            height: "fit-content",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Button
+          <p
+            style={{
+              width: "fit-content",
+              color: "black",
+              backgroundColor: "white",
+              borderRadius: "9px",
+            }}
+          >
+            Address: {data.account}
+          </p>
+          {/* <Button
             style={{
               backgroundColor: "white",
               borderRadius: "18px",
               color: "#1C2023",
             }}
           >
-            <MoreHorizIcon />
-          </Button>
+           
+          </Button> */}
         </div>
       </div>
     </div>

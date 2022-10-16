@@ -1,7 +1,13 @@
 import { useContext } from "react";
 import { Web3Context } from "./Web3Context";
-import { ethers } from "ethers";
+import { Contract, ethers } from "ethers";
 import { Button, Alert } from "@mui/material";
+import {
+  exchangeAdress,
+  exchange_ABI,
+  tokenAddress,
+  token_ABI,
+} from "../../constants";
 
 const WalletConnection = () => {
   const { ethereum } = window;
@@ -15,12 +21,24 @@ const WalletConnection = () => {
           method: "eth_requestAccounts",
         });
         const chainId = await ethereum.request({ method: "eth_chainId" });
+
+        const TokenContract = new Contract(tokenAddress, token_ABI, provider);
+        const ExchangeContract = new Contract(
+          exchangeAdress,
+          exchange_ABI,
+          provider
+        );
+        console.log("token contract", TokenContract);
+        console.log("-------------------------------");
+        console.log("Exchange contract", ExchangeContract);
         if (chainId != 5) {
           alert("Change the network to goerli !");
         }
 
         setData({
           ...data,
+          ExchangeContract: ExchangeContract,
+          TokenContract: TokenContract,
           provider: provider,
           account: [account],
           chainId: chainId,

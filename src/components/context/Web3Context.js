@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
+
 export const Web3Context = createContext();
 
 const Web3Provider = ({ children }) => {
   const { ethereum } = window;
   const [data, setData] = useState({
-    contract: "",
+    ExchangeContract: "",
+    TokenContract: "",
     provider: "",
     account: "",
     chainId: "",

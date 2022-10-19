@@ -1,4 +1,4 @@
-# Decentralized Exchnage
+# Decentralized Exchange
 
 Most of us are used to buying crypto through centralized exchanges - Binance, Coinbase, etc. Often times, we resolve to the same platforms when trading between different cryptocurrencies.
 However, centralized exchanges are rife with problems. They can get hacked and lose all their user's money, or worse yet, the company behind the exchange can close up shop and run away with all the money.

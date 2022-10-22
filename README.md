@@ -1,40 +1,70 @@
-# Decentralized Exchange
+# Getting Started with Create React App
 
-Most of us are used to buying crypto through centralized exchanges - Binance, Coinbase, etc. Often times, we resolve to the same platforms when trading between different cryptocurrencies.
-However, centralized exchanges are rife with problems. They can get hacked and lose all their user's money, or worse yet, the company behind the exchange can close up shop and run away with all the money.
-This may seem extreme, but this is not fiction.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Centralized exchanges typically work on an order-book system. Alice puts up a listing saying she is willing to sell 100 of 'TokenA' for 50 of 'TokenB', and the listing is added to the order book. At some point, if Bob comes along and says he wants to buy 100 of 'TokenA' for 50 of 'TokenB' - their orders are matched together, and the trade is executed.
+## Available Scripts
 
-## Market Makers
+In the project directory, you can run:
 
-Uniswap is an Automated Market Maker. Let's try to understand what that means.
+### `npm start`
 
-Market Makers are entities that provide liquidity (assets) to trading markets. In non-orderbook systems, liquidity is what allows trading to be possible. That means if you want to sell BTC to buy ETH, the exchange must have an ETH balance you can purchase from in exchange for BTC. Some trading pairs have very high liquidity (eg. BTC/ETH trading pair), but some have extremely low or no liquidity at all (eg. scam tokens, or newly created tokens).
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-A DEX must have enough liquidity to function and serve as an alternative to centralized exchanges.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-One way to get that liquidity is that the developers (or investors) put in their own money and become market makers. However, this is not realistic as they would need a huge amount of money to provide enough liquidity for all possible trading pairs. Moreover, this hurts decentralization, as the developers/investors would hold all the power in the market.
+### `npm test`
 
-Another way, which Uniswap implemented, was to let anyone be a market maker - and this is what makes Uniswap an automated market maker. Any user can deposit funds to a specific trading pair and add liquidity, and in exchange earn money for doing so through trading fees taken from the users.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Features
+### `npm run build`
 
-- Anyone can add liquidity to become a liquidity provider
-- Liquidity providers can remove their liquidity and get back their crypto whenever they want
-- Users can swap between assets present in the trading pool, assuming there is enough liquidity
-- Users are charged a small trading fees, that gets distributed amongst the liquidity providers so they can earn for providing liquidity
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Installation
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Install  dependicies before starting the development server.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```sh
-npm i --yes
-```
+### `npm run eject`
 
-To start the dev server
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-```sh
-npm start
-```
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

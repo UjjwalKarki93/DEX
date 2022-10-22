@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Web3Provider from "./components/context/Web3Context";
-
+import { CssVarsProvider, extendTheme } from "@mui/joy";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const theme = extendTheme();
 root.render(
   <Web3Provider>
-    <App />
+    <CssVarsProvider theme={theme}>
+      <App />
+    </CssVarsProvider>
   </Web3Provider>
 );
 

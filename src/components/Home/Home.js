@@ -1,104 +1,95 @@
-import React from "react";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { TextField, Select, MenuItem } from "@mui/material";
-import { Box } from "@mui/system";
-import WalletConnection from "../context/WalletConnection";
+import React, { useState } from "react";
+import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
+import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
+import { Typography } from "@mui/material";
+import { useWeb3 } from "../context/Web3Context";
+import useWalletConnection from "../context/WalletConnection";
 
+const Container = (props) => (
+  <Box width="calc(100% - 50px)" mx="auto" {...props} />
+);
+
+const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
+  <Box
+    display="flex"
+    flexDirection={column ? "column" : "row"}
+    alignItems={rest.alignItems || center || (aiCenter && "center")}
+    justifyContent={rest.justifyContent || center || (jcCenter && "center")}
+    {...rest}
+  />
+);
 const Home = () => {
+  const [selectValue, setSelectValue] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+  const [success, setSuccess] = useState(true);
+
+  const { data } = useWeb3();
+  const connect = useWalletConnection();
   return (
     <div className="homeContainer">
-      <Box
-        sx={{
-          borderRadius: "30px",
-          height: "300px",
-          width: "500px",
-          margin: "auto",
-          marginTop: "55px",
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "white",
-          boxShadow: " rgba(0, 0, 0, 0.16) 0px 1px 4px ",
-        }}
+      <Flex
+        m="auto"
+        mt="55px"
+        bgcolor="white"
+        boxShadow="lg"
+        width="500px"
+        borderRadius="lg"
+        py="25px"
+        aiCenter
       >
-        <div
-          style={{
-            // outline: "1px solid red",
-            display: "flex",
-            height: "fit-content",
-            justifyContent: "space-between",
-            margin: "10px",
-            paddingRight: "50px",
-            paddingLeft: "50px",
-            color: "gray",
-            fontWeight: "100",
-          }}
-        >
-          <h3>Swap</h3>
-          <p>
-            <SettingsIcon />
-          </p>
-        </div>
-
-        <Box
-          className="boxes"
-          sx={{
-            height: "fit-content",
-            // outline: "1px solid",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "auto",
-          }}
-        >
-          <div className="firstBox" style={{ margin: "5px" }}>
-            <TextField
-              placeholder="0.00"
-              variant="outlined"
-              fullWidth
-              multiline
-              rows={3}
-              sx={{
-                width: { sm: 200, md: 300 },
-              }}
-            ></TextField>
-
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={Number}
-              sx={{ width: "fit-content", height: "40px", margin: "10px" }}
+        <Flex component={Container} column height="100%" gap="20px">
+          <Flex mb="15px" aiCenter justifyContent="space-between">
+            <Typography color="neutral.700" variant="h3">
+              Swap
+            </Typography>
+            <Box component={SettingsOutlined} color="neutral.700" />
+          </Flex>
+          {success && (
+            <Alert
+              variant="soft"
+              color="success"
+              endDecorator={
+                <Box
+                  component={CloseRounded}
+                  onClick={() => setSuccess((prev) => !prev)}
+                />
+              }
             >
-              <MenuItem>ETH</MenuItem>
-              <MenuItem>NBUS</MenuItem>
-            </Select>
-          </div>
-          <div>
-            <Box sx={{ display: "flex", width: "100%" }}>
-              <TextField
-                placeholder="0.00"
-                variant="outlined"
-                label="Select Token"
-                fullWidth
-                multiline
-                rows={1.5}
-                sx={{
-                  width: { sm: 200, md: 300 },
-                }}
-              ></TextField>
-
-              <Select
-                label="Select token"
-                sx={{ width: "fit-content", height: "40px", margin: "10px" }}
-              >
-                <MenuItem>ETH</MenuItem>
-                <MenuItem>NBUS</MenuItem>
+              Successfully Connected!
+            </Alert>
+          )}
+          <Flex gap="10px">
+            <Box flex="7">
+              <TextField fullWidth variant="outlined" placeholder="Token" />
+            </Box>
+            <Box flex="3">
+              <Select color="neutral" placeholder="Source">
+                <Option value="ETH">Eth</Option>
+                <Option value="JDL">JDL</Option>
               </Select>
             </Box>
-          </div>
-        </Box>
-        <WalletConnection />
-      </Box>
+          </Flex>
+          <Flex gap="10px">
+            <Box flex="7">
+              <TextField fullWidth variant="outlined" placeholder="Token" />
+            </Box>
+            <Box flex="3">
+              <Select color="neutral" placeholder="Target">
+                <Option value="ETH">Eth</Option>
+                <Option value="JDL">JDL</Option>
+              </Select>
+            </Box>
+          </Flex>
+          <Flex justifyContent="flex-end" gap="10px">
+            <Button variant="plain" color="danger">
+              Reset
+            </Button>
+            <Button variant="soft" onClick={connect}>
+              Connect Wallet
+            </Button>
+          </Flex>
+        </Flex>
+      </Flex>
     </div>
   );
 };

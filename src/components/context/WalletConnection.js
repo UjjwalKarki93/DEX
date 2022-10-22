@@ -1,7 +1,5 @@
-import { useContext } from "react";
-import { Web3Context } from "./Web3Context";
+import { useWeb3 } from "./Web3Context";
 import { Contract, ethers } from "ethers";
-import { Button, Alert } from "@mui/material";
 import {
   exchangeAdress,
   exchange_ABI,
@@ -9,12 +7,12 @@ import {
   token_ABI,
 } from "../../constants";
 
-const WalletConnection = () => {
+const useWalletConnection = () => {
   const { ethereum } = window;
-  const { data, setData } = useContext(Web3Context);
+  const { data, setData } = useWeb3();
   const connect = async () => {
     try {
-      if (window.ethereum != undefined) {
+      if (window.ethereum !== undefined) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
 
         const [account] = await ethereum.request({
@@ -52,39 +50,6 @@ const WalletConnection = () => {
       console.error(e);
     }
   };
-
-  return (
-    <div>
-      {data.provider ? (
-        <div>
-          <Alert variant="filled" severity="success">
-            Successfully Connected!
-          </Alert>
-          {/* <p>Address: {data.account}</p>
-          <p>Chain ID: {parseInt(data.chainId, 16)}</p> */}
-        </div>
-      ) : (
-        <Button
-          variant="error.light"
-          sx={{
-            ":hover": {
-              bgcolor: "#FCDCE8", // theme.palette.primary.main
-              color: "#DF3B89",
-            },
-            backgroundColor: "#FDD3DF",
-            color: "#DF3B89",
-            borderColor: "green",
-            margin: "15px",
-            height: "40px",
-            width: "250px",
-            borderRadius: "18px",
-          }}
-          onClick={connect}
-        >
-          connect wallet
-        </Button>
-      )}
-    </div>
-  );
+  return connect;
 };
-export default WalletConnection;
+export default useWalletConnection;

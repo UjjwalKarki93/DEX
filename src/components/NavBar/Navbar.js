@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { Button } from "@mui/material";
+import { Button } from "@mui/joy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 const Navbar = () => {
   return (

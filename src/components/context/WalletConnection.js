@@ -29,7 +29,7 @@ const useWalletConnection = () => {
         console.log("token contract", TokenContract);
         console.log("-------------------------------");
         console.log("Exchange contract", ExchangeContract);
-        if (chainId != 5) {
+        if (chainId !== 5) {
           alert("Change the network to goerli !");
         }
 

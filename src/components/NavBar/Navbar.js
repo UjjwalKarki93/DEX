@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+// import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { Button } from "@mui/joy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Link } from "react-router-dom";
+import Liquidity from "../NavElements/Liquidity";
 const Navbar = () => {
   return (
     <div
@@ -11,8 +13,9 @@ const Navbar = () => {
         height: "60px",
         display: "flex",
         justifyContent: "space-between",
+        padding: "0px 20px",
         alignItems: "center",
-        margin: "0px 25px",
+        backgroundColor: "#f7f0f6",
       }}
     >
       <div>
@@ -31,7 +34,7 @@ const Navbar = () => {
           display: "flex",
           justifyContent: "space-around",
           alignItems: "center",
-          backgroundColor: "white",
+          backgroundColor: "transparent",
         }}
       >
         {/* <div
@@ -42,15 +45,22 @@ const Navbar = () => {
         >
           swap
         </div> */}
-
         <div>
-          <Button style={{ color: "grey" }}>Swap</Button>
+          <Link to={"/"}>
+            <Button style={{ color: "grey" }} variant={"soft"}>
+              Swap
+            </Button>
+          </Link>
         </div>
-
         <div>
-          <Button style={{ color: "grey" }}>Liquidity</Button>
+          <Link to="/Liquidity">
+            <Button style={{ color: "grey" }} variant={"soft"}>
+              Liquidity
+            </Button>
+          </Link>
         </div>
       </div>
+
       <div
         style={{
           display: "flex",

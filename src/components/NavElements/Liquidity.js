@@ -18,8 +18,7 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
     {...rest}
   />
 );
-//nishan feature branch
-const Home = () => {
+const Liquidity = () => {
   const [selectValue, setSelectValue] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [success, setSuccess] = useState(false);
@@ -41,7 +40,7 @@ const Home = () => {
         <Flex component={Container} column height="100%" gap="20px">
           <Flex mb="15px" aiCenter justifyContent="space-between">
             <Typography color="neutral.700" variant="h3">
-              Swap
+              Liquidity
             </Typography>
             <Box component={SettingsOutlined} color="neutral.700" />
           </Flex>
@@ -95,4 +94,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Liquidity;

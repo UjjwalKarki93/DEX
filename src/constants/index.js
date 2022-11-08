@@ -748,6 +748,6 @@ const token_ABI = [
   },
 ];
 
-const tokenAddress = "0xd861809e0feFcB2dF45461569C1a08dF24D89329";
+const tokenAddress = "0x942086A0d4f2CCa91D9D2AA0397F43B828132586";
 const exchangeAdress = "0x785440A033f8c42dD5838B723440FEc1dE940e51";
 module.exports = { exchange_ABI, exchangeAdress, token_ABI, tokenAddress };

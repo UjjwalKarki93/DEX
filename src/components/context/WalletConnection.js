@@ -19,12 +19,12 @@ const useWalletConnection = () => {
           method: "eth_requestAccounts",
         });
         const chainId = await ethereum.request({ method: "eth_chainId" });
-
-        const TokenContract = new Contract(tokenAddress, token_ABI, provider);
+        const signer = await provider.getSigner();
+        const TokenContract = new Contract(tokenAddress, token_ABI, signer);
         const ExchangeContract = new Contract(
           exchangeAdress,
           exchange_ABI,
-          provider
+          signer
         );
         console.log("token contract", TokenContract);
         console.log("-------------------------------");

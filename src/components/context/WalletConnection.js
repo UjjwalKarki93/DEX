@@ -26,9 +26,7 @@ const useWalletConnection = () => {
           exchange_ABI,
           signer
         );
-        console.log("token contract", TokenContract);
-        console.log("-------------------------------");
-        console.log("Exchange contract", ExchangeContract);
+
         if (parseInt(chainId, 16) !== 5) {
           alert("Change the network to goerli !");
         }
@@ -41,6 +39,7 @@ const useWalletConnection = () => {
           account: [account],
           chainId: chainId,
         });
+        console.log(data);
       } else if (window.web3) {
         alert("update your metamask");
       } else {

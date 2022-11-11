@@ -37,7 +37,7 @@ const Liquidity = () => {
   const [addEther, setEther] = useState(0);
   const [addACOtokens, setAco] = useState(0);
 
-  const GetBalances = async () => {
+  const getBalances = async () => {
     const _ethBalance = await GetEtherBalance(false);
     const _cdBalance = await GetAcoTokenBalance();
     const _lpBalance = await GetShareTokenBalance();
@@ -83,7 +83,7 @@ const Liquidity = () => {
           </Flex>
 
           <Flex>
-            {console.log(GetBalances())}
+            {console.log(getBalances())}
             You have:
             <br />
             {utils.formatEther(balance.acoBalance)} ACO Tokens

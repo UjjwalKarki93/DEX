@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-// import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { useWeb3 } from "../context/Web3Context";
 import { Button } from "@mui/joy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
-import Liquidity from "../NavElements/Liquidity";
 const Navbar = () => {
+  const { data } = useWeb3();
   return (
     <div
       className="mainContainer"
@@ -37,14 +36,6 @@ const Navbar = () => {
           backgroundColor: "transparent",
         }}
       >
-        {/* <div
-          onClick={() => setSelected("swap")}
-          className={`${setstyle.navItem} ${
-            selected === "pool" && setstyle.activeNavItem
-          }`}
-        >
-          swap
-        </div> */}
         <div>
           <Link to={"/"}>
             <Button style={{ color: "grey" }} variant={"soft"}>
@@ -53,7 +44,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/Liquidity">
+          <Link to="/liquidity">
             <Button style={{ color: "grey" }} variant={"soft"}>
               Liquidity
             </Button>
@@ -75,41 +66,6 @@ const Navbar = () => {
             display: "flex",
             borderRadius: "18px",
             gap: "5px",
-            padding: "10px",
-            width: "fit-content",
-            height: "fit-content",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "white",
-            cursor: "pointer",
-          }}
-        >
-          <img
-            src="https://seeklogo.com/images/E/ethereum-logo-EC6CDBA45B-seeklogo.com.png"
-            height={20}
-            alt="img"
-          ></img>
-          <div>
-            {/* <Button
-              style={{
-                width: "fit-content",
-                height: "fit-content",
-              }}
-            > */}
-            <select style={{ border: "none", outline: "none" }}>
-              <option> Etherum</option>
-              <option>brave</option>
-              <option>sol</option>
-            </select>
-            {/* </Button> */}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            borderRadius: "18px",
-            gap: "5px",
             margin: "5px",
             width: "fit-content",
             height: "fit-content",
@@ -117,15 +73,7 @@ const Navbar = () => {
             justifyContent: "center",
           }}
         >
-          <Button
-            style={{
-              backgroundColor: "white",
-              borderRadius: "18px",
-              color: "#1C2023",
-            }}
-          >
-            <MoreHorizIcon />
-          </Button>
+          <p>{data.account}</p>
         </div>
       </div>
     </div>

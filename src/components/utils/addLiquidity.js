@@ -1,9 +1,9 @@
 import { utils } from "ethers";
 import { exchangeAdress } from "../../constants";
-import { useWeb3 } from "../context/Web3Context";
-const { data } = useWeb3();
+import { UseWeb3 } from "../context/Web3Context";
 
 export const addLiquidity = async (AcoAmount, ethAmount) => {
+  const { data } = UseWeb3();
   try {
     let tx = await data.TokenContract.approve(
       exchangeAdress,
@@ -18,4 +18,14 @@ export const addLiquidity = async (AcoAmount, ethAmount) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const calculateACO = async (
+  _addEther = "0",
+  ethReserve,
+  ACOtokenReserve
+) => {
+  const addEther = utils.parseEther(_addEther);
+  const ACOtokenAmount = addEther.mul(ACOtokenReserve).div(ethReserve);
+  return ACOtokenAmount;
 };

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { utils } from "ethers";
+import { utils, BigNumber } from "ethers";
 import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
 import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
 import { Typography } from "@mui/material";
-import { useWeb3 } from "../context/Web3Context";
+
 import useWalletConnection from "../context/WalletConnection";
+import {
+  GetAcoTokenBalance,
+  GetShareTokenBalance,
+  GetEtherBalance,
+} from "../utils/GetAmounts";
+// import { addLiquidity, calculateACO } from "../utils/AddLiquidity";
 
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
@@ -20,12 +26,40 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
   />
 );
 const Liquidity = () => {
-  const [selectValue, setSelectValue] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  const { data } = useWeb3();
+  const zero = BigNumber.from(0);
+  //balances of user's account
+  const [balance, setBalance] = useState({
+    ethBalance: zero,
+    acoBalance: zero,
+    stBalance: zero,
+  });
   const connect = useWalletConnection();
+  const [addEther, setEther] = useState(0);
+  const [addACOtokens, setAco] = useState(0);
+
+  const getBalances = async () => {
+    const _ethBalance = await GetEtherBalance(false);
+    const _cdBalance = await GetAcoTokenBalance();
+    const _lpBalance = await GetShareTokenBalance();
+    setBalance({
+      ...balance,
+      ethBalance: _ethBalance,
+      acoBalance: _cdBalance,
+      stBalance: _lpBalance,
+    });
+    console.log("balance", balance);
+  };
+
+  // const _addLiquidity = async () => {
+  //   try {
+  //     const addEther = utils.parseEther(addEther.toString());
+  //     if (addEther !== 0 && addACOtokens !== 0) {
+  //       await addLiquidity(addEther, addACOtokens);
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   return (
     <div className="homeContainer">
@@ -44,42 +78,27 @@ const Liquidity = () => {
             <Typography color="neutral.700" variant="h3">
               Liquidity
             </Typography>
+
             <Box component={SettingsOutlined} color="neutral.700" />
           </Flex>
-          {success && (
-            <Alert
-              variant="soft"
-              color="success"
-              endDecorator={
-                <Box
-                  component={CloseRounded}
-                  onClick={() => setSuccess((prev) => !prev)}
-                />
-              }
-            >
-              Successfully Connected!
-            </Alert>
-          )}
-          <Flex gap="10px">
-            <Box flex="7">
-              <TextField fullWidth variant="outlined" placeholder="Token" />
-            </Box>
-            <Box flex="3">
-              <Select color="neutral" placeholder="Source">
-                <Option value="ETH">Eth</Option>
-                <Option value="NBUS">NBUS</Option>
-              </Select>
-            </Box>
+
+          <Flex>
+            {console.log(getBalances())}
+            You have:
+            <br />
+            {utils.formatEther(balance.acoBalance)} ACO Tokens
+            <br />
+            {utils.formatEther(balance.ethBalance)} Ether
+            <br />
+            {utils.formatEther(balance.stBalance)} Share tokens
           </Flex>
+
           <Flex gap="10px">
             <Box flex="7">
-              <TextField fullWidth variant="outlined" placeholder="Token" />
-            </Box>
-            <Box flex="3">
-              <Select color="neutral" placeholder="Target">
-                <Option value="ETH">Eth</Option>
-                <Option value="NBUS">NBUS</Option>
-              </Select>
+              <input
+                placeholder="Ether Amount"
+                onChange={(e) => setEther(e.target.value)}
+              ></input>
             </Box>
           </Flex>
           <Flex justifyContent="flex-end" gap="10px">

@@ -5,7 +5,6 @@ import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
 import { Typography } from "@mui/material";
 import { useWeb3 } from "../context/Web3Context";
 import useWalletConnection from "../context/WalletConnection";
-import GetSwap from "../utils/GetSwap";
 
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
@@ -21,11 +20,9 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
   />
 );
 //nishan feature branch
-const Home = () => {
-  const [ethSelected, setSelection] = useState(false);
+const Swap = (props) => {
+  const [ethSelected, setSelection] = useState();
   const [swapAmount, setAmount] = useState(0);
-
-  const { data } = useWeb3();
   const connect = useWalletConnection();
 
   //  const getAmountFromSwap=async(amount)=>{
@@ -39,6 +36,7 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
+      {console.log(useWalletConnection())}
       <Flex
         m="auto"
         mt="55px"
@@ -75,13 +73,13 @@ const Home = () => {
                 color="neutral"
                 placeholder="Type"
                 onChange={async (e) => {
-                  setSelection(e.target.value);
+                  setSelection(!ethSelected);
 
                   console.log("selection", ethSelected);
                 }}
               >
-                <Option value={true}>ETH</Option>
-                <Option value={false}>ACO</Option>
+                <Option value="ETH">ETH</Option>
+                <Option value="ACO">ACO</Option>
               </Select>
             </Box>
           </Flex>
@@ -106,4 +104,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Swap;

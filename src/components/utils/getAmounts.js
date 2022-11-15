@@ -27,7 +27,7 @@ export const GetShareTokenBalance = async () => {
 export const GetAcoTokenBalance = async () => {
   const { data } = useWeb3();
   const acoBalance = await data.TokenContract.balanceOf(data.account[0]);
-  console.log("acoBalance", utils.formatEther(acoBalance));
+
   return utils.formatEther(acoBalance);
 };
 

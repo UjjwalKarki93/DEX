@@ -2,9 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const Web3Context = createContext();
 
-export const useWeb3 = () => {
-  return useContext(Web3Context);
-};
+export const useWeb3 = () => useContext(Web3Context);
 const Web3Provider = ({ children }) => {
   const { ethereum } = window;
   const [data, setData] = useState({

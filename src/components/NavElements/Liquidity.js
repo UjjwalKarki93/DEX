@@ -25,30 +25,12 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
     {...rest}
   />
 );
-const Liquidity = () => {
+const Liquidity = (props) => {
   const zero = BigNumber.from(0);
-  //balances of user's account
-  const [balance, setBalance] = useState({
-    ethBalance: zero,
-    acoBalance: zero,
-    stBalance: zero,
-  });
+
   const connect = useWalletConnection();
   const [addEther, setEther] = useState(0);
   const [addACOtokens, setAco] = useState(0);
-
-  const getBalances = async () => {
-    const _ethBalance = await GetEtherBalance(false);
-    const _cdBalance = await GetAcoTokenBalance();
-    const _lpBalance = await GetShareTokenBalance();
-    setBalance({
-      ...balance,
-      ethBalance: _ethBalance,
-      acoBalance: _cdBalance,
-      stBalance: _lpBalance,
-    });
-    console.log("balance", balance);
-  };
 
   // const _addLiquidity = async () => {
   //   try {
@@ -83,14 +65,13 @@ const Liquidity = () => {
           </Flex>
 
           <Flex>
-            {console.log(getBalances())}
             You have:
             <br />
-            {utils.formatEther(balance.acoBalance)} ACO Tokens
+            {utils.formatEther(props.balance.acoBalance)} ACO Tokens
             <br />
-            {utils.formatEther(balance.ethBalance)} Ether
+            {utils.formatEther(props.balance.ethBalance)} Ether
             <br />
-            {utils.formatEther(balance.stBalance)} Share tokens
+            {utils.formatEther(props.balance.stBalance)} Share tokens
           </Flex>
 
           <Flex gap="10px">

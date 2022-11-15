@@ -37,7 +37,7 @@ const Navbar = () => {
         }}
       >
         <div>
-          <Link to={"/"}>
+          <Link to={"/swap"}>
             <Button style={{ color: "grey" }} variant={"soft"}>
               Swap
             </Button>

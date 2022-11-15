@@ -4,7 +4,6 @@ import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
 import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
 import { Typography } from "@mui/material";
 import { useWeb3 } from "../context/Web3Context";
-import useWalletConnection from "../context/WalletConnection";
 
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
@@ -23,7 +22,7 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
 const Swap = (props) => {
   const [ethSelected, setSelection] = useState();
   const [swapAmount, setAmount] = useState(0);
-  const connect = useWalletConnection();
+  const { data } = useWeb3();
 
   //  const getAmountFromSwap=async(amount)=>{
   //   try{
@@ -36,7 +35,6 @@ const Swap = (props) => {
 
   return (
     <div className="homeContainer">
-      {console.log(useWalletConnection())}
       <Flex
         m="auto"
         mt="55px"
@@ -85,17 +83,8 @@ const Swap = (props) => {
           </Flex>
           <Box>{ethSelected ? `You will get ACO` : `You will get Ether`}</Box>
           <Flex>
-            <Button variant="soft" onClick={connect}>
+            <Button variant="soft" onClick={props.renderHandler}>
               SWAP
-            </Button>
-          </Flex>
-
-          <Flex justifyContent="flex-end" gap="10px">
-            <Button variant="plain" color="danger">
-              Reset
-            </Button>
-            <Button variant="soft" onClick={connect}>
-              Connect Wallet
             </Button>
           </Flex>
         </Flex>

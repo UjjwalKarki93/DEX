@@ -39,7 +39,6 @@ const useWalletConnection = () => {
           account: [account],
           chainId: chainId,
         });
-        console.log(data);
       } else if (window.web3) {
         alert("update your metamask");
       } else {

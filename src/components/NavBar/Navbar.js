@@ -51,31 +51,6 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          height: "fit-content",
-          width: "fit-content",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            borderRadius: "18px",
-            gap: "5px",
-            margin: "5px",
-            width: "fit-content",
-            height: "fit-content",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <p>{data.account}</p>
-        </div>
-      </div>
     </div>
   );
 };

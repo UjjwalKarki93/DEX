@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { utils, BigNumber } from "ethers";
 import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
 import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
@@ -28,7 +29,6 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
 const Liquidity = (props) => {
   const zero = BigNumber.from(0);
 
-  const connect = useWalletConnection();
   const [addEther, setEther] = useState(0);
   const [addACOtokens, setAco] = useState(0);
 
@@ -81,14 +81,6 @@ const Liquidity = (props) => {
                 onChange={(e) => setEther(e.target.value)}
               ></input>
             </Box>
-          </Flex>
-          <Flex justifyContent="flex-end" gap="10px">
-            <Button variant="plain" color="danger">
-              Reset
-            </Button>
-            <Button variant="soft" onClick={connect}>
-              Connect Wallet
-            </Button>
           </Flex>
         </Flex>
       </Flex>

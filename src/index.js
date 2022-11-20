@@ -1,18 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Web3Provider from "./components/context/Web3Context";
+import Web3Provider from "./context/Web3Context";
 import { CssVarsProvider, extendTheme } from "@mui/joy";
+import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const theme = extendTheme();
 root.render(
-  <Web3Provider>
-    <CssVarsProvider theme={theme}>
-      <App />
-    </CssVarsProvider>
-  </Web3Provider>
+  <React.StrictMode>
+    <Web3Provider>
+      <CssVarsProvider theme={theme}>
+        <App />
+      </CssVarsProvider>
+    </Web3Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

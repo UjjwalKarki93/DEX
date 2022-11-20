@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
-import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
-import { Typography } from "@mui/material";
-import { useWeb3 } from "../context/Web3Context";
-import useWalletConnection from "../context/WalletConnection";
-
+import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import TextField from "@mui/joy/TextField";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Typography from "@mui/joy/Typography";
+import useWalletConnection from "../../context/WalletConnection";
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
 );
@@ -18,15 +20,15 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
     {...rest}
   />
 );
-const Home = () => {
-  const [selectValue, setSelectValue] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const [success, setSuccess] = useState(true);
 
-  const { data } = useWeb3();
+const Swap = () => {
+  const [ethSelected, setEthSelected] = useState(false);
+  const [swapAmount, setSwapAmount] = useState(0);
+
   const connect = useWalletConnection();
   return (
     <div className="homeContainer">
+      {console.log(useWalletConnection())}
       <Flex
         m="auto"
         mt="55px"
@@ -44,42 +46,37 @@ const Home = () => {
             </Typography>
             <Box component={SettingsOutlined} color="neutral.700" />
           </Flex>
-          {success && (
-            <Alert
-              variant="soft"
-              color="success"
-              endDecorator={
-                <Box
-                  component={CloseRounded}
-                  onClick={() => setSuccess((prev) => !prev)}
-                />
-              }
-            >
-              Successfully Connected!
-            </Alert>
-          )}
+
           <Flex gap="10px">
             <Box flex="7">
-              <TextField fullWidth variant="outlined" placeholder="Token" />
+              <TextField
+                fullWidth
+                type="number"
+                variant="outlined"
+                placeholder="Amount"
+                value={swapAmount}
+                onChange={(e) => setSwapAmount(e.target.value)}
+              />
             </Box>
             <Box flex="3">
-              <Select color="neutral" placeholder="Source">
-                <Option value="ETH">Eth</Option>
-                <Option value="JDL">JDL</Option>
+              <Select
+                color="neutral"
+                placeholder="Type"
+                value={ethSelected ? "ETH" : "ACO"}
+                onChange={(e) => setEthSelected(e.target.value)}
+              >
+                <Option value="ETH">ETH</Option>
+                <Option value="ACO">ACO</Option>
               </Select>
             </Box>
           </Flex>
-          <Flex gap="10px">
-            <Box flex="7">
-              <TextField fullWidth variant="outlined" placeholder="Token" />
-            </Box>
-            <Box flex="3">
-              <Select color="neutral" placeholder="Target">
-                <Option value="ETH">Eth</Option>
-                <Option value="JDL">JDL</Option>
-              </Select>
-            </Box>
+          <Box>{ethSelected ? `You will get ACO` : `You will get Ether`}</Box>
+          <Flex>
+            <Button variant="soft" onClick={connect}>
+              SWAP
+            </Button>
           </Flex>
+
           <Flex justifyContent="flex-end" gap="10px">
             <Button variant="plain" color="danger">
               Reset
@@ -94,4 +91,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Swap;

@@ -5,7 +5,7 @@ import {
   exchange_ABI,
   tokenAddress,
   token_ABI,
-} from "../../constants";
+} from "../constants";
 
 const useWalletConnection = () => {
   const { ethereum } = window;
@@ -19,17 +19,15 @@ const useWalletConnection = () => {
           method: "eth_requestAccounts",
         });
         const chainId = await ethereum.request({ method: "eth_chainId" });
-
-        const TokenContract = new Contract(tokenAddress, token_ABI, provider);
+        const signer = await provider.getSigner();
+        const TokenContract = new Contract(tokenAddress, token_ABI, signer);
         const ExchangeContract = new Contract(
           exchangeAdress,
           exchange_ABI,
-          provider
+          signer
         );
-        console.log("token contract", TokenContract);
-        console.log("-------------------------------");
-        console.log("Exchange contract", ExchangeContract);
-        if (chainId != 5) {
+
+        if (parseInt(chainId, 16) !== 5) {
           alert("Change the network to goerli !");
         }
 
@@ -41,6 +39,7 @@ const useWalletConnection = () => {
           account: [account],
           chainId: chainId,
         });
+        console.log(data);
       } else if (window.web3) {
         alert("update your metamask");
       } else {

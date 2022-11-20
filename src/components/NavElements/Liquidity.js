@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import { utils, BigNumber } from "ethers";
-import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
-import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
+import { utils } from "ethers";
+import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
 import { Typography } from "@mui/material";
-
-import useWalletConnection from "../context/WalletConnection";
-import {
-  GetAcoTokenBalance,
-  GetShareTokenBalance,
-  GetEtherBalance,
-} from "../utils/GetAmounts";
-// import { addLiquidity, calculateACO } from "../utils/AddLiquidity";
+import useWalletConnection from "../../context/WalletConnection";
 
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
@@ -26,23 +20,8 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
   />
 );
 const Liquidity = (props) => {
-  const zero = BigNumber.from(0);
-
+  const [ether, setEther] = useState(0);
   const connect = useWalletConnection();
-  const [addEther, setEther] = useState(0);
-  const [addACOtokens, setAco] = useState(0);
-
-  // const _addLiquidity = async () => {
-  //   try {
-  //     const addEther = utils.parseEther(addEther.toString());
-  //     if (addEther !== 0 && addACOtokens !== 0) {
-  //       await addLiquidity(addEther, addACOtokens);
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
   return (
     <div className="homeContainer">
       <Flex

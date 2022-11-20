@@ -1,27 +1,23 @@
 import { useWeb3 } from "../context/Web3Context";
 
-const GetAmountsFromSwap = async (
+export const getAmountFromSwap = async ({
   swapAmount,
-  ethBalance,
+  ethSelected,
   reserveACO,
-  ethSelected
-) => {
-  const { data } = useWeb3();
-  let tokenAmount;
-  //if eth is selected then swapamount = eth else swapamount = acotoken
-  if (ethSelected) {
-    tokenAmount = await data.ExchangeContract.amountCalculator(
-      swapAmount,
-      ethBalance,
-      reserveACO
-    );
-  } else {
-    tokenAmount = await data.ExchangeContract.amountCalculator(
-      swapAmount,
-      reserveACO,
-      ethBalance
-    );
-  }
+  ethBalance,
+}) => {
+  // FIXME: Returns the same value for both ethSelected and !ethSelected
+  const tokenAmount = ethSelected
+    ? await data.ExchangeContract.amountCalculator(
+        swapAmount,
+        reserveACO,
+        ethBalance
+      )
+    : await data.ExchangeContract.amountCalculator(
+        swapAmount,
+        reserveACO,
+        ethBalance
+      );
   return tokenAmount;
 };
 

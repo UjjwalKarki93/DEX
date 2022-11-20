@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { utils } from "ethers";
-import { SettingsOutlined, CloseRounded } from "@mui/icons-material";
-import { Box, TextField, Select, Option, Button, Alert } from "@mui/joy";
-import { Typography } from "@mui/material";
-import { useWeb3 } from "../context/Web3Context";
-import useWalletConnection from "../context/WalletConnection";
-
+import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import TextField from "@mui/joy/TextField";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Typography from "@mui/joy/Typography";
+import useWalletConnection from "../../context/WalletConnection";
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
 );
@@ -19,21 +20,12 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
     {...rest}
   />
 );
-//nishan feature branch
-const Swap = (props) => {
-  const [ethSelected, setSelection] = useState();
-  const [swapAmount, setAmount] = useState(0);
+
+const Swap = () => {
+  const [ethSelected, setEthSelected] = useState(false);
+  const [swapAmount, setSwapAmount] = useState(0);
+
   const connect = useWalletConnection();
-
-  //  const getAmountFromSwap=async(amount)=>{
-  //   try{
-  //     const swapamount = utils.parseEther(amount.toString());
-  //     if(swapamount != 0){
-
-  //     }
-  //   }
-  //  }
-
   return (
     <div className="homeContainer">
       {console.log(useWalletConnection())}
@@ -62,21 +54,16 @@ const Swap = (props) => {
                 type="number"
                 variant="outlined"
                 placeholder="Amount"
-                onChange={async (e) => {
-                  setAmount(e.target.value);
-                  // await getAmountFromSwap(e.target.value);
-                }}
+                value={swapAmount}
+                onChange={(e) => setSwapAmount(e.target.value)}
               />
             </Box>
             <Box flex="3">
               <Select
                 color="neutral"
                 placeholder="Type"
-                onChange={async (e) => {
-                  setSelection(!ethSelected);
-
-                  console.log("selection", ethSelected);
-                }}
+                value={ethSelected ? "ETH" : "ACO"}
+                onChange={(e) => setEthSelected(e.target.value)}
               >
                 <Option value="ETH">ETH</Option>
                 <Option value="ACO">ACO</Option>

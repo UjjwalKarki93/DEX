@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { useWeb3 } from "../context/Web3Context";
+import React from "react";
 import { Button } from "@mui/joy";
 import { Link } from "react-router-dom";
+import { useWeb3 } from "../../context/Web3Context";
 const Navbar = () => {
   const { data } = useWeb3();
   return (

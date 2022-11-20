@@ -5,7 +5,7 @@ import {
   exchange_ABI,
   tokenAddress,
   token_ABI,
-} from "../../constants";
+} from "../constants";
 
 const useWalletConnection = () => {
   const { ethereum } = window;

@@ -12,6 +12,7 @@ import useWalletConnection from "./context/WalletConnection";
 
 const App = () => {
   const zero = BigNumber.from(0);
+  const connect = useWalletConnection();
   const [balance, setBalance] = useState({
     ethBalance: zero,
     acoBalance: zero,
@@ -19,21 +20,19 @@ const App = () => {
     ethContractBalance: zero,
     reserveACO: zero,
   });
-  const connect = useWalletConnection();
-  const _ethBalance = useEtherBalance(false).then((result) => {
-    return result.data;
-  });
-  // const { _acoBalance, _reserveACO } = useACOToken();
-  // const _stBalance = useShareToken();
+
+  const _ethBalance = useEtherBalance(false);
+  const { _acoBalance, _reserveACO } = useACOToken();
+  const _stBalance = useShareToken();
 
   useEffect(async () => {
     connect();
     setBalance({
       ...balance,
       ethBalance: _ethBalance,
-      // acoBalance: _acoBalance,
-      // stBalance: _stBalance,
-      // reserveACO: _reserveACO,
+      acoBalance: _acoBalance,
+      stBalance: _stBalance,
+      reserveACO: _reserveACO,
     });
 
     console.log("ethBalance", balance.ethBalance);

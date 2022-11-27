@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { utils } from "ethers";
 import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
 import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
 import { Typography } from "@mui/material";
-import useWalletConnection from "../../context/WalletConnection";
 
 const Container = (props) => (
   <Box width="calc(100% - 50px)" mx="auto" {...props} />
@@ -21,7 +19,6 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
 );
 const Liquidity = (props) => {
   const [ether, setEther] = useState(0);
-  const connect = useWalletConnection();
   return (
     <div className="homeContainer">
       <Flex
@@ -60,14 +57,6 @@ const Liquidity = (props) => {
                 onChange={(e) => setEther(e.target.value)}
               ></input>
             </Box>
-          </Flex>
-          <Flex justifyContent="flex-end" gap="10px">
-            <Button variant="plain" color="danger">
-              Reset
-            </Button>
-            <Button variant="soft" onClick={connect}>
-              Connect Wallet
-            </Button>
           </Flex>
         </Flex>
       </Flex>

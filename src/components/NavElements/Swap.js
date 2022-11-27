@@ -21,14 +21,14 @@ const Flex = ({ column, aiCenter, jcCenter, center, ...rest }) => (
   />
 );
 
-const Swap = () => {
+const Swap = (props) => {
   const [ethSelected, setEthSelected] = useState(false);
   const [swapAmount, setSwapAmount] = useState(0);
 
   const connect = useWalletConnection();
   return (
     <div className="homeContainer">
-      {console.log(useWalletConnection())}
+      {console.log(props)}
       <Flex
         m="auto"
         mt="55px"

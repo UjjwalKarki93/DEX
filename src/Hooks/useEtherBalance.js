@@ -1,4 +1,5 @@
 import { useWeb3 } from "../context/Web3Context";
+import { utils } from "ethers";
 /**
  *
  * @param {Boolean} isExchangeContract - boolean to determine if the balance is for the exchange contract or the user's account
@@ -6,15 +7,12 @@ import { useWeb3 } from "../context/Web3Context";
  */
 export const useEtherBalance = async (isExchangeContract) => {
   const { data } = useWeb3();
-  const {
-    provider: { getBalance },
-    exchangeContractAddress,
-    account,
-  } = data;
+  const { ExchangeContract, account } = data;
   try {
-    const balance = await getBalance(
-      isExchangeContract ? exchangeContractAddress : account[0]
+    const balance = await data.provider.getBalance(
+      isExchangeContract ? ExchangeContract.address : account[0]
     );
+    console.log("ether balance", utils.formatEther(balance));
     return balance;
   } catch (e) {
     console.error(e);

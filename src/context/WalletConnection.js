@@ -19,12 +19,11 @@ const useWalletConnection = () => {
           method: "eth_requestAccounts",
         });
         const chainId = await ethereum.request({ method: "eth_chainId" });
-        const signer = await provider.getSigner();
-        const TokenContract = new Contract(tokenAddress, token_ABI, signer);
+        const TokenContract = new Contract(tokenAddress, token_ABI, provider);
         const ExchangeContract = new Contract(
           exchangeAdress,
           exchange_ABI,
-          signer
+          provider
         );
 
         if (parseInt(chainId, 16) !== 5) {
